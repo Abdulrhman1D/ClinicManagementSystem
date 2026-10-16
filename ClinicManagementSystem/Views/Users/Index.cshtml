@@ -1,0 +1,75 @@
+﻿@using ClinicManagementSystem.Application.Dtos
+@model IEnumerable<UserDto>
+
+@{
+    ViewData["Title"] = "Users";
+}
+
+<div class="container">
+    <h1>Users</h1>
+
+    <div class="text-end">
+        <a asp-action="Create"
+           class="btn btn-primary">
+            New User
+        </a>
+    </div>
+
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Name</th>
+                <th>Username</th>
+                <th>Email</th>
+                <th>Status</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            @foreach (var user in Model)
+            {
+                <tr>
+                    <td>@user.Id</td>
+                    <td>@user.Name</td>
+                    <td>@user.UserName</td>
+                    <td>@user.Email</td>
+                    <td>
+                        @if (user.IsLocked)
+                        {
+                            <span class="text-danger">
+                                Locked
+                            </span>
+                        }
+                        else
+                        {
+                            <span class="text-success">
+                                Active
+                            </span>
+                        }
+                    </td>
+                    <td>
+                        <a asp-action="Details"
+                           asp-route-uuid="@user.Uuid"
+                           class="btn btn-info">
+                            Details
+                        </a>
+
+                        <a asp-action="Edit"
+                           asp-route-uuid="@user.Uuid"
+                           class="btn btn-warning">
+                            Edit
+                        </a>
+
+                        <a asp-action="Delete"
+                           asp-route-uuid="@user.Uuid"
+                           class="btn btn-danger">
+                            Delete
+                        </a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

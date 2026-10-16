@@ -1,0 +1,57 @@
+﻿@using ClinicManagementSystem.Application.Dtos
+@model IEnumerable<PatientDto>
+
+<div class="container">
+    <h1>Patients</h1>
+
+    <div class="text-end">
+        <a asp-action="Create"
+           class="btn btn-primary">
+            Add New
+        </a>
+    </div>
+
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Name</th>
+                <th>Phone</th>
+                <th>Date of Birth</th>
+                <th>Gender</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            @foreach (var patient in Model)
+            {
+                <tr>
+                    <td>@patient.Id</td>
+                    <td>@patient.Name</td>
+                    <td>@patient.Phone</td>
+                    <td>
+                        @(patient.DateOfBirth?.ToString(
+                            "dd/MM/yyyy",
+                            System.Globalization.CultureInfo.InvariantCulture
+                        ))
+                    </td>
+                    <td>@patient.Gender</td>
+                    <td>
+                        <a asp-action="Edit"
+                           asp-route-uuid="@patient.Uuid"
+                           class="btn btn-warning">
+                            Edit
+                        </a>
+
+                        <a asp-action="Delete"
+                           asp-route-uuid="@patient.Uuid"
+                           class="btn btn-danger">
+                            Delete
+                        </a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

@@ -1,0 +1,30 @@
+﻿@using ClinicManagementSystem.Application.Dtos
+@model SpecialtyDto
+
+@{
+    ViewData["Title"] = "Delete Specialty";
+}
+
+<div class="container">
+    <h1>Delete Specialty</h1>
+
+    <p>Are you sure you want to delete this specialty?</p>
+
+    <form asp-action="Delete"
+          asp-route-uuid="@Model.Uuid"
+          method="post">
+
+        <div asp-validation-summary="All" class="text-danger"></div>
+
+        <div class="form-group">
+            <label asp-for="Name"></label>
+            <input asp-for="Name" class="form-control" readonly />
+        </div>
+
+        <br />
+
+        <input type="submit" value="Delete" class="btn btn-danger" />
+    </form>
+
+    <a asp-action="Index">Back to List</a>
+</div>

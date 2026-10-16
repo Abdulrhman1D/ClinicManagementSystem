@@ -1,0 +1,80 @@
+﻿@using ClinicManagementSystem.Application.Dtos
+@model DoctorUpdateDto
+
+@{
+    ViewData["Title"] = "Edit Doctor";
+}
+
+<div class="container">
+    <h1>Edit Doctor</h1>
+
+    <form asp-action="Edit"
+          asp-route-uuid="@Model.Uuid"
+          method="post">
+
+        <div asp-validation-summary="All"
+             class="text-danger"></div>
+
+        <div class="form-group">
+            <label asp-for="Name"></label>
+            <input asp-for="Name"
+                   class="form-control" />
+            <span asp-validation-for="Name"
+                  class="text-danger"></span>
+        </div>
+
+        <div class="form-group">
+            <label asp-for="Phone"></label>
+            <input asp-for="Phone"
+                   class="form-control" />
+            <span asp-validation-for="Phone"
+                  class="text-danger"></span>
+        </div>
+
+        <div class="form-group">
+            <label asp-for="SpecialtyId">
+                Specialty
+            </label>
+
+            <select asp-for="SpecialtyId"
+                    asp-items="ViewBag.Specialties"
+                    class="form-control">
+                <option value="">
+                    -- Select Specialty --
+                </option>
+            </select>
+
+            <span asp-validation-for="SpecialtyId"
+                  class="text-danger"></span>
+        </div>
+
+        <div class="form-group">
+            <label asp-for="JobId">
+                Job
+            </label>
+
+            <select asp-for="JobId"
+                    asp-items="ViewBag.Jobs"
+                    class="form-control">
+                <option value="">
+                    -- Select Job --
+                </option>
+            </select>
+
+            <span asp-validation-for="JobId"
+                  class="text-danger"></span>
+        </div>
+
+        <br />
+
+        <input type="submit"
+               value="Update"
+               class="btn btn-warning" />
+    </form>
+
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}
